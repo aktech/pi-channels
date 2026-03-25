@@ -15,40 +15,29 @@ Channels follow the same protocol as [Claude Code channels](https://code.claude.
 ### 1. Install the plugin
 
 ```bash
-npm install pi-channels
+pi install npm:pi-channels
 ```
 
-### 2. Register as a pi extension
-
-Add to your pi extensions config (e.g., `.pi/extensions.json` or your pi config):
-
-```json
-{
-  "extensions": ["pi-channels"]
-}
-```
-
-### 3. Configure channels
+### 2. Configure channels
 
 Create `.pi-channels.json` in your project root:
 
 ```json
 {
   "webhook": {
-    "command": "bun",
-    "args": ["./channels/webhook.ts"]
+    "command": "npx",
+    "args": ["tsx", "./channels/webhook.ts"]
   },
   "telegram": {
-    "command": "bun",
-    "args": ["./channels/telegram.ts"],
-    "env": {
-      "TELEGRAM_BOT_TOKEN": "your-token"
-    }
+    "command": "npx",
+    "args": ["tsx", "./channels/telegram.ts"]
   }
 }
 ```
 
-### 4. Launch pi with channels
+Channel servers inherit environment variables from the parent process, so you can set tokens in your shell (e.g. `export TELEGRAM_BOT_TOKEN=...`) rather than hardcoding them in the config. The `env` field in the config is available for overrides if needed.
+
+### 3. Launch pi with channels
 
 ```bash
 pi --channels webhook,telegram
