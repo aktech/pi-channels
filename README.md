@@ -1,4 +1,4 @@
-# pi-channels-plugin
+# pi-channels
 
 Channels plugin for the [pi coding agent](https://github.com/aktech/pi-channels-plugin). Brings the [Claude Code channels](https://code.claude.com/docs/en/channels) concept to pi — push events into pi sessions via MCP channel servers.
 
@@ -15,7 +15,7 @@ Channels follow the same protocol as [Claude Code channels](https://code.claude.
 ### 1. Install the plugin
 
 ```bash
-npm install pi-channels-plugin
+npm install pi-channels
 ```
 
 ### 2. Register as a pi extension
@@ -24,7 +24,7 @@ Add to your pi extensions config (e.g., `.pi/extensions.json` or your pi config)
 
 ```json
 {
-  "extensions": ["pi-channels-plugin"]
+  "extensions": ["pi-channels"]
 }
 ```
 

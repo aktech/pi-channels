@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 /**
- * Telegram channel server for pi-channels-plugin.
+ * Telegram channel server for pi-channels.
  *
  * Uses Telegram Bot API long polling to receive messages,
  * and pushes them into pi via the MCP channel protocol.
