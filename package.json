@@ -52,6 +52,9 @@
 		"type": "git",
 		"url": "git+https://github.com/aktech/pi-channels.git"
 	},
+	"pi": {
+		"extensions": ["./dist/index.js"]
+	},
 	"engines": {
 		"node": ">=20.0.0"
 	}
