@@ -1,0 +1,6 @@
+{
+	"fakechat": {
+		"command": "npx",
+		"args": ["tsx", "examples/fakechat-server.ts"]
+	}
+}

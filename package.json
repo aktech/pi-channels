@@ -1,0 +1,58 @@
+{
+	"name": "pi-channels-plugin",
+	"version": "0.1.0",
+	"description": "Channels plugin for the pi coding agent — push events into pi sessions via MCP channel servers",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist",
+		"CHANGELOG.md"
+	],
+	"scripts": {
+		"clean": "shx rm -rf dist",
+		"build": "tsc -p tsconfig.build.json",
+		"dev": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",
+		"lint": "eslint src/ test/ && prettier --check src/ test/",
+		"lint:fix": "eslint src/ test/ --fix && prettier --write src/ test/",
+		"test": "npx tsx test/channel-manager.test.ts && npx tsx test/extension.test.ts",
+		"prepublishOnly": "npm run clean && npm run build"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.12.1",
+		"zod": "^3.24.0"
+	},
+	"peerDependencies": {
+		"@mariozechner/pi-coding-agent": ">=0.62.0",
+		"@sinclair/typebox": ">=0.34.0"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@mariozechner/pi-agent-core": "^0.62.0",
+		"@mariozechner/pi-ai": "^0.62.0",
+		"@mariozechner/pi-coding-agent": "^0.62.0",
+		"@sinclair/typebox": "^0.34.0",
+		"@types/node": "^24.3.0",
+		"eslint": "^10.1.0",
+		"prettier": "^3.8.1",
+		"shx": "^0.3.4",
+		"typescript": "^5.7.3",
+		"typescript-eslint": "^8.57.2"
+	},
+	"keywords": [
+		"pi",
+		"coding-agent",
+		"channels",
+		"mcp",
+		"plugin"
+	],
+	"author": "Amit Kumar",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/aktech/pi-channels-plugin.git"
+	},
+	"engines": {
+		"node": ">=20.0.0"
+	}
+}
