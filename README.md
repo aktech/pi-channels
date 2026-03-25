@@ -1,6 +1,6 @@
 # pi-channels
 
-Channels plugin for the [pi coding agent](https://github.com/aktech/pi-channels-plugin). Brings the [Claude Code channels](https://code.claude.com/docs/en/channels) concept to pi — push events into pi sessions via MCP channel servers.
+Channels plugin for the [pi coding agent](https://github.com/aktech/pi-channels). Brings the [Claude Code channels](https://code.claude.com/docs/en/channels) concept to pi — push events into pi sessions via MCP channel servers.
 
 ## What are channels?
 
