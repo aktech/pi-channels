@@ -1,6 +1,6 @@
 {
 	"name": "pi-channels",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "Channels plugin for the pi coding agent — push events into pi sessions via MCP channel servers",
 	"type": "module",
 	"main": "./dist/index.js",
