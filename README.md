@@ -1,5 +1,8 @@
 # pi-channels
 
+[![CI](https://github.com/aktech/pi-channels/actions/workflows/ci.yml/badge.svg)](https://github.com/aktech/pi-channels/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/pi-channels)](https://www.npmjs.com/package/pi-channels)
+
 Channels plugin for the [pi coding agent](https://github.com/aktech/pi-channels) — push events into pi sessions via MCP channel servers. Compatible with the [Claude Code channels](https://code.claude.com/docs/en/channels) protocol.
 
 ## Setup
