@@ -52,7 +52,11 @@ pi --channels all
 
 ### 5. Pair your Telegram account
 
-Send any message to your bot on Telegram. The bot replies with a pairing code. Then ask pi to pair with that code — it will call the `pair` tool to add your chat to the allowlist.
+Send any message to your bot on Telegram. The bot replies with a pairing code. In pi, run:
+
+```
+/telegram-pair <code>
+```
 
 Only paired users can send messages. The allowlist is persisted at `~/.pi/channels/telegram/allowlist.json`. Pairing codes expire after 5 minutes.
 
