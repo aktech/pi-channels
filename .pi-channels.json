@@ -2,5 +2,8 @@
 	"fakechat": {
 		"command": "npx",
 		"args": ["tsx", "examples/fakechat-server.ts"]
+	},
+	"telegram": {
+		"command": "pi-channels-telegram"
 	}
 }

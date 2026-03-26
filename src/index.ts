@@ -280,6 +280,36 @@ export default function channelsExtension(pi: ExtensionAPI) {
 		},
 	});
 
+	pi.registerCommand("telegram-pair", {
+		description: "Pair a Telegram user: /telegram-pair <code>",
+		handler: async (args, ctx) => {
+			const code = args.trim();
+			if (!code) {
+				ctx.ui.notify("Usage: /telegram-pair <code>", "warning");
+				return;
+			}
+
+			const conn = manager.getConnection("telegram");
+			if (!conn) {
+				ctx.ui.notify('Telegram channel is not running. Start it with --channels telegram', "warning");
+				return;
+			}
+
+			try {
+				const result = await manager.callTool("telegram", "pair", { code });
+				const text =
+					result.content
+						?.filter((c) => c.type === "text" && c.text)
+						.map((c) => c.text!)
+						.join("\n") || "ok";
+				ctx.ui.notify(text, "info");
+			} catch (err) {
+				const msg = err instanceof Error ? err.message : String(err);
+				ctx.ui.notify(`Pairing failed: ${msg}`, "error");
+			}
+		},
+	});
+
 	pi.registerCommand("channel-start", {
 		description: "Start a channel from config: /channel-start <name>",
 		handler: async (args, ctx) => {

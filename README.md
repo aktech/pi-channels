@@ -18,29 +18,30 @@ Channels follow the same protocol as [Claude Code channels](https://code.claude.
 pi install npm:pi-channels
 ```
 
-### 2. Configure channels
+### 2. Set up Telegram
+
+Create a bot with [@BotFather](https://t.me/BotFather) and set the token:
+
+```bash
+export TELEGRAM_BOT_TOKEN="your-bot-token"
+```
+
+### 3. Configure channels
 
 Create `.pi-channels.json` in your project root:
 
 ```json
 {
-  "webhook": {
-    "command": "npx",
-    "args": ["tsx", "./channels/webhook.ts"]
-  },
   "telegram": {
-    "command": "npx",
-    "args": ["tsx", "./channels/telegram.ts"]
+    "command": "pi-channels-telegram"
   }
 }
 ```
 
-Channel servers inherit environment variables from the parent process, so you can set tokens in your shell (e.g. `export TELEGRAM_BOT_TOKEN=...`) rather than hardcoding them in the config. The `env` field in the config is available for overrides if needed.
-
-### 3. Launch pi with channels
+### 4. Launch pi with channels
 
 ```bash
-pi --channels webhook,telegram
+pi --channels telegram
 ```
 
 Or start all configured channels:
@@ -48,6 +49,12 @@ Or start all configured channels:
 ```bash
 pi --channels all
 ```
+
+### 5. Pair your Telegram account
+
+Send any message to your bot on Telegram. The bot replies with a pairing code. Then ask pi to pair with that code — it will call the `pair` tool to add your chat to the allowlist.
+
+Only paired users can send messages. The allowlist is persisted at `~/.pi/channels/telegram/allowlist.json`. Pairing codes expire after 5 minutes.
 
 ## Writing a channel server
 
