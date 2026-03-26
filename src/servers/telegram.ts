@@ -238,10 +238,9 @@ async function poll() {
 	}
 }
 
-console.error("[telegram] Starting long polling...");
 if (allowlist.size > 0) {
-	console.error(`[telegram] Allowlist: ${[...allowlist].join(", ")}`);
+	console.error(`[telegram] Connected. Listening for messages from ${allowlist.size} paired user(s).`);
 } else {
-	console.error("[telegram] No users in allowlist. Send a message to the bot to get a pairing code.");
+	console.error("[telegram] Connected. Send a message to your bot on Telegram to get a pairing code, then run /telegram-pair <code> here.");
 }
 poll();
