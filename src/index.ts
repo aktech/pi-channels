@@ -183,6 +183,11 @@ export default function channelsExtension(pi: ExtensionAPI) {
 
 		// Handle incoming channel messages → inject into pi session
 		const unsubMsg = manager.onMessage((msg) => {
+			// Status messages go to UI notification, not the agent
+			if (msg.meta?.type === "status") {
+				ctx.ui.notify(msg.content, "info");
+				return;
+			}
 			const tag = formatChannelTag(msg);
 			pi.sendUserMessage(tag, { deliverAs: "followUp" });
 		});
