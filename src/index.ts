@@ -296,7 +296,7 @@ export default function channelsExtension(pi: ExtensionAPI) {
 
 			const conn = manager.getConnection("telegram");
 			if (!conn) {
-				ctx.ui.notify('Telegram channel is not running. Start it with --channels telegram', "warning");
+				ctx.ui.notify("Telegram channel is not running. Start it with --channels telegram", "warning");
 				return;
 			}
 

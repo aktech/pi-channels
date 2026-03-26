@@ -19,10 +19,7 @@ import { homedir } from "os";
 import { randomBytes } from "crypto";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import {
-	ListToolsRequestSchema,
-	CallToolRequestSchema,
-} from "@modelcontextprotocol/sdk/types.js";
+import { ListToolsRequestSchema, CallToolRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 if (!BOT_TOKEN) {
@@ -147,7 +144,9 @@ mcp.setRequestHandler(CallToolRequestSchema, async (req) => {
 		if (Date.now() > pending.expiresAt) {
 			pendingPairings.delete(normalized);
 			return {
-				content: [{ type: "text", text: "Pairing code has expired. Ask the user to send another message to get a new code." }],
+				content: [
+					{ type: "text", text: "Pairing code has expired. Ask the user to send another message to get a new code." },
+				],
 				isError: true,
 			};
 		}
@@ -160,7 +159,12 @@ mcp.setRequestHandler(CallToolRequestSchema, async (req) => {
 		console.error(`[telegram] Paired @${pending.username} (chat ${pending.chatId})`);
 
 		return {
-			content: [{ type: "text", text: `Paired @${pending.username} (chat ${pending.chatId}). Their messages will now be forwarded.` }],
+			content: [
+				{
+					type: "text",
+					text: `Paired @${pending.username} (chat ${pending.chatId}). Their messages will now be forwarded.`,
+				},
+			],
 		};
 	}
 
@@ -208,11 +212,10 @@ async function poll() {
 						expiresAt: Date.now() + 5 * 60 * 1000, // 5 minute expiry
 					});
 
-					await sendMessage(
-						chatId,
-						`Your pairing code is: \`${code}\`\n\nThis code expires in 5 minutes.`,
+					await sendMessage(chatId, `Your pairing code is: \`${code}\`\n\nThis code expires in 5 minutes.`);
+					console.error(
+						`[telegram] Pairing request from @${username}. Check Telegram for the code, then run /telegram-pair <code> in pi.`,
 					);
-					console.error(`[telegram] Pairing request from @${username}. Check Telegram for the code, then run /telegram-pair <code> in pi.`);
 					continue;
 				}
 
@@ -241,6 +244,8 @@ async function poll() {
 if (allowlist.size > 0) {
 	console.error(`[telegram] Connected. Listening for messages from ${allowlist.size} paired user(s).`);
 } else {
-	console.error("[telegram] Connected. No paired users. Send a message to your bot on Telegram to get a pairing code, then run /telegram-pair <code> in pi.");
+	console.error(
+		"[telegram] Connected. No paired users. Send a message to your bot on Telegram to get a pairing code, then run /telegram-pair <code> in pi.",
+	);
 }
 poll();
