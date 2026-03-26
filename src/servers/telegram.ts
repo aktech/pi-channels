@@ -241,6 +241,14 @@ async function poll() {
 if (allowlist.size > 0) {
 	console.error(`[telegram] Connected. Listening for messages from ${allowlist.size} paired user(s).`);
 } else {
-	console.error("[telegram] Connected. Send a message to your bot on Telegram to get a pairing code, then run /telegram-pair <code> here.");
+	console.error("[telegram] Connected. No paired users yet.");
+	// Notify pi session so the user sees the next step
+	await mcp.notification({
+		method: "notifications/claude/channel",
+		params: {
+			content: "Telegram channel connected. Send a message to your bot on Telegram to get a pairing code, then run /telegram-pair <code> here.",
+			meta: { type: "status" },
+		},
+	});
 }
 poll();
